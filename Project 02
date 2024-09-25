@@ -1,11 +1,10 @@
 package pr01;
+
 public class MissingNumberInAP {
 
     public static int findMissingNumber(int[] arr) {
         int n = arr.length;
-        
         int d = (arr[n - 1] - arr[0]) / n;
-
         int low = 0;
         int high = n - 1;
 
@@ -14,22 +13,41 @@ public class MissingNumberInAP {
 
             if (arr[mid] != arr[0] + mid * d) {
                 if (arr[mid - 1] == arr[0] + (mid - 1) * d) {
-                    return arr[0] + mid * d; 
+                    return arr[0] + mid * d; // Return the missing number
                 }
                 high = mid - 1;
             } else {
                 low = mid + 1;
             }
         }
-
         return -1;
+    }
+
+    public static double calculateScalingConstant(long experimentalTime, int n) {
+        double theoreticalTime = Math.log(n) / Math.log(2);
+        return (double) experimentalTime / theoreticalTime;
     }
 
     public static void main(String[] args) {
         int[] arr = {2, 5, 8, 11, 17, 20, 23, 26, 29};
 
+        long startTime = System.nanoTime();
+
         int missingNumber = findMissingNumber(arr);
 
+        long endTime = System.nanoTime();
+
+        long experimentalTime = endTime - startTime;
+
+        int n = arr.length;
+
+        double scalingConstant = calculateScalingConstant(experimentalTime, n);
+
+        double theoreticalTime = Math.log(n) / Math.log(2);  // log2(n)
+
         System.out.println("The missing number is: " + missingNumber);
+        System.out.println("Experimental time: " + experimentalTime + " nanoseconds");
+        System.out.println("Theoretical time: " + theoreticalTime + " units");
+        System.out.println("The scaling constant is: " + scalingConstant);
     }
 }
