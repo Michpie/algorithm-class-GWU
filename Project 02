@@ -26,7 +26,7 @@ public class MissingNumberInAP {
     }
 
     public static void main(String[] args) {
-        int[] arr = {1, 5, 11, 18, 22, 26, 30, 36, 41};
+        int[] arr = {2, 5, 8, 11, 14, 17, 20, 23, 26, 29};
 
         int missingNumber = findMissingNumber(arr);
 
